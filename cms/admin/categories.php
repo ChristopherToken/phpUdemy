@@ -22,34 +22,9 @@
 
                         <div class="col-xs-6">
 
-                        <?php //ADD CATEGOREIS TO DB 
+                        <?php //CATEGORIES FUNCTION
+                        insert_categories(); ?>
                         
-                            if(isset($_POST['submit'])) {
-                                $cat_title = $_POST['cat_title'];
-                                    if($cat_title == "" || empty($cat_title)) {
-                                        echo "you know what man this field must be empty";
-                                    } else {
-
-                                        $query = "INSERT INTO categories(cat_title)";
-                                        $query .= "VALUE('{$cat_title}') ";
-
-                                            $create_category_query = mysqli_query($connection, $query);
-
-                                            if(!$create_category_query) {
-                                                die('Querry Failded' . mysqli_error($connection));
-                                            }
-
-                                    }
-                            }
-
-
-
-                        ?>
-
-
-
-
-
 
                         <form action = "" method="post" >
                             <div class="form-group">
@@ -61,7 +36,8 @@
                                 </div>
                         </form>
 
-                        <?php 
+                        <?php //UPDATE AND INCLUDE QUERY
+
                             if(isset($_GET['edit'])) {
                                 $cat_id = $_GET['edit'];
 
@@ -74,10 +50,6 @@
                         </div> <!--Add Category Form-->
                         <div class="col-xs-6">
                                 <table class ="table table-bordered table-hover ">
-                                <?php //BRING CATEGORIES FROM DATABASE TO TABLE IF WANT LIMIT USE: LIMIT: 3
-                                        $query =  "SELECT * FROM categories";
-                                        $select_categories = mysqli_query($connection, $query);
-                                ?>
                                     <thead>
                                             <tr>
                                                 <th>Id</th>
@@ -87,32 +59,17 @@
                                     <tbody>
                                    
                                          
-                                            <?php //display categories in table
-                                                while($row = mysqli_fetch_assoc( $select_categories)) {
-                                                    $cat_id =  $row['cat_id'];
-                                                    $cat_title =  $row['cat_title'];
-                                                    echo "<tr>";
-                                                    echo "<td>{$cat_id}</td>";
-                                                    echo "<td>{$cat_title}</td>";
-                                                    echo "<td><a href='categories.php?delete={$cat_id}'>Delete</a></td>";
-                                                    echo "<td><a href='categories.php?edit={$cat_id}'>Edit</a></td>";
-                                                    echo "</tr>";
-                                                }
+                                            <?php
+                                            //FUNCTION
+                                            //BRING CATEGORIES FROM DATABASE TO TABLE IF WANT LIMIT USE: LIMIT: 3
+                                            //display categories in table
+                                            findAllCategories ()
+
                                             ?>
 
-                                                <?php 
-                                                
-                                                if(isset($_GET['delete'])){
-                                                    $the_cat_id = $_GET['delete'];
-                                                    $query = "DELETE FROM categories WHERE cat_id = {$the_cat_id}";
-                                                    $delete_query = mysqli_query($connection, $query);
-                                                    header("Location: categories.php");
-                                                }
-
-                                                
-                                                
-                                                ?>
-
+                                            <?php //delete function
+                                                 deleteCategories() 
+                                            ?>
 
                                     </tbody>
                                 </table>
