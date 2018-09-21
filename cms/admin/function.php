@@ -1,5 +1,18 @@
-<?php // INSERT CATEGORIES TO DB
+<?php 
 
+function confirmQuery($result){
+
+    global $connection;
+
+    if(!$result) {
+
+        die("QUERY FAILED ." . mysqli_error($connection));
+    }
+
+}
+
+
+// INSERT CATEGORIES TO DB
 function insert_categories() {
 
     global $connection;
