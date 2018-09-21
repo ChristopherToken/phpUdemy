@@ -22,6 +22,7 @@
     $select_posts = mysqli_query($connection,$query);
 
     while($row = mysqli_fetch_assoc($select_posts)) {
+
         $post_id = $row['post_id'];           
         $post_author = $row['post_author'];
         $post_title = $row['post_title'];
@@ -31,7 +32,7 @@
         $post_tags = $row['post_tags'];
         $post_comment_count = $row['post_comment_count'];
         $post_date = $row['post_date'];
-    }  
+    
     //DISPLAY POST IN TABLE
     echo "<tr>";
         echo "<td>{$post_id}</td>";
@@ -44,7 +45,10 @@
         echo "<td>{$post_comment_count}</td>";
         echo "<td>{$post_date}</td>";
     echo "</tr>";
-       
+
+
+    
+    }  
 ?>
      
     </tbody>
