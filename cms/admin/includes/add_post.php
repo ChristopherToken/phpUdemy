@@ -23,7 +23,11 @@
 
             $query = "INSERT INTO posts(post_category_id, post_title, post_author, post_date, post_image, post_content, post_tags, post_comment_count, post_status)";
 
+<<<<<<< HEAD
             $query .= "VALUES({$post_category_id}, '{$post_title}', '{$post_author}', now(), '{$post_content}','{$post_tags}', '{$post_comment_count}', '{$post_status}', )";
+=======
+            $query .= "VALUES({$post_category_id}, '{$post_titel}', '{$post_author}', now(), '{$post_content}','{$post_tags}', '{$post_comment_count}', '{$post_status}', )";
+>>>>>>> parent of 83cc439... update still didnt fix the bug
 
             $create_post_query  = myqli_query($connection, $query);
 
