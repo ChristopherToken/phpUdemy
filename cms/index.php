@@ -31,7 +31,7 @@
                     // close php ?>
 
                         
-                        <!-- Blog Post with php code -->
+                <!-- Blog Post with php code -->
                 <h2>
                     <a href="#"><?php echo $post_title ?> </a>
                 </h2>
