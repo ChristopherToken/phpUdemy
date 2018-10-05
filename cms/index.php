@@ -29,10 +29,16 @@
                         $post_date =  $row['post_date'];
                         $post_image =  $row['post_image'];
                         $post_content =  substr($row['post_content'],0,150);
-                    
-                    // close php ?>
+                        $post_status =  $row['post_status'];
 
-                        
+                        if($post_status !== 'published') {
+
+                            echo "<h1> No post sorry </h1>";
+
+                        } else {
+
+               // close php ?>
+ 
                 <!-- Blog Post with php code -->
                 <h2>
                     <a href="post.php?p_id=<?php echo $post_id; ?>"><?php echo $post_title ?> </a>
@@ -49,10 +55,8 @@
 
                     <hr>
 
-             
-    
     <?php //close the loop
-    } ?>
+    }  }?>
 
 
             </div>
