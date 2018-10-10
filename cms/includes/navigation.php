@@ -34,6 +34,9 @@
                         <li>
                             <a href="admin">Admin</a>
                         </li>
+                        <li>
+                            <a href="registration.php">Registeration</a>
+                        </li>
 
                         <?php 
                         
