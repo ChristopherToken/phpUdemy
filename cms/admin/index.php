@@ -2,6 +2,8 @@
 
     <div id="wrapper">
 
+
+
   
         <!-- Navigation -->
         <?php include "includes/admin_navigation.php"; ?>
@@ -20,6 +22,10 @@
                             <small> Welcome back <?php echo $_SESSION['firstname'] ?> 
                             !! You're 
                             <?php  echo $_SESSION['user_role'] ?></small>
+                        </h1>
+
+                        <h1>
+                            <?php echo users_online() ?>
                         </h1>
                                    
 <!-- /.row -->

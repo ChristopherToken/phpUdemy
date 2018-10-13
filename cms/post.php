@@ -15,21 +15,32 @@
                 
                 <?php //BRING Post from database to display on page
                
-               if(isset($_GET['p_id'])){
+               if (isset($_GET['p_id'])) {
                    $the_post_id = $_GET['p_id'];
-               }
+               
+                   $query = "SELECT * FROM posts WHERE post_id = $the_post_id ";
+                   $select_all_posts_query = mysqli_query($connection, $query);
 
-                $query = "SELECT * FROM posts WHERE post_id = $the_post_id ";
-                $select_all_posts_query = mysqli_query($connection, $query);
+                   $update_statement = mysqli_prepare($connection, "UPDATE posts SET post_views_count = post_views_count + 1 WHERE post_id = ?");
 
-                while($row = mysqli_fetch_assoc($select_all_posts_query)) {
-                    $post_title =  $row['post_title'];
-                    $post_author =  $row['post_author'];
-                    $post_date =  $row['post_date'];
-                    $post_image =  $row['post_image'];
-                    $post_content =  $row['post_content'];
+                   mysqli_stmt_bind_param($update_statement, "i", $the_post_id);
+           
+                   mysqli_stmt_execute($update_statement);
+
+                   if(!$update_statement) {
+
+                    die("query failed" );
+                }
+            
+
+                   while ($row = mysqli_fetch_assoc($select_all_posts_query)) {
+                       $post_title =  $row['post_title'];
+                       $post_author =  $row['post_author'];
+                       $post_date =  $row['post_date'];
+                       $post_image =  $row['post_image'];
+                       $post_content =  $row['post_content'];
                     
-                    // close php ?>
+                       // close php?>
 
                         
                 <!-- Blog Post with php code -->
@@ -50,8 +61,15 @@
 
              
     
-    <?php //close the loop
-    } ?>
+    <?php }
+        
+    } else {
+
+    header("Location: index.php");
+
+    } 
+
+    ?>
 
 
      <!-- Blog Comments -->

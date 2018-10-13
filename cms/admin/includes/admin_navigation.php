@@ -13,6 +13,8 @@
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
             <li><a href="../index.php">Home</a></li>
+            <li><a href="">Users Online: <span class="usersonline"></span></a></li>
+           
 
             <!--adminDropDown-->   
             <li class="dropdown">
@@ -70,4 +72,29 @@
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
+        <script>
+        
+        function loadUsersOnline() {
+
+
+            $.get("functions.php?onlineusers=result", function(data) {
+
+            $(".usersonline").text(data);
+
+
+            });
+
+
+
+            }
+
+
+            setInterval(function() {
+
+            loadUsersOnline();
+
+
+            }, 500);
+
+        </script>
         </nav>

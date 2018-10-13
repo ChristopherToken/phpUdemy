@@ -19,7 +19,6 @@ while($row = mysqli_fetch_array($select_user_profile_query)) {
     $user_lastname = $row['user_lastname'];
     $user_email = $row['user_email'];
     $user_image = $row['user_image'];
-    $user_role = $row['user_role'];
 
     }
 
@@ -48,7 +47,6 @@ if(isset($_POST['upate_profile'])) {
 $query = "UPDATE users SET ";
       $query .="user_firstname  = '{$user_firstname}', ";
       $query .="user_lastname = '{$user_lastname}', ";
-      $query .="user_role   =  '{$user_role}', ";
       $query .="username = '{$username}', ";
       $query .="user_email = '{$user_email}', ";
       $query .="user_password   = '{$user_password}' ";
@@ -91,53 +89,33 @@ $query = "UPDATE users SET ";
  
  <div class="form-group">
         <label for="title">FirstName</label>
-        <input type="text" value="<?php echo $user_firstname; ?>" class="form-control" name="user_firstname">
+        <input type="text" class="form-control" name="user_firstname">
     </div>
 
      <div class="form-group">
         <label for="post_status">LastName</label>
-        <input type="text" value="<?php echo $user_lastname; ?>" class="form-control" name="user_lastname">
+        <input type="text"  class="form-control" name="user_lastname">
     </div>
-
-    <div class="form-group">
-        <select name="user_role" id="">
-        <option value="subscriber"><?php echo $user_role; ?></option>
-            <?php
-            
-            if($user_role == 'admin') {
-
-            echo "<option value='subscriber'>Subscriber</option>";
-
-            } else {
-                echo "<option value='admin'>Admin</option>";
-            }
-
-            ?>
-        </select>
-    </div>
-
- 
 
    <div class="form-group">
         <label for="post_tags">Username</label>
-        <input type="text" value="<?php echo $username; ?>" class="form-control" name="username">
+        <input type="text"  value=" <?php echo $username ; ?> " class="form-control" name="username">
     </div>
-
-
 
    <div class="form-group">
         <label for="post_tags">Email</label>
-        <input type="email" value="<?php echo $user_email; ?>" class="form-control" name="user_email">
+        <input type="email"   class="form-control" name="user_email">
+
     </div>
 
     <div class="form-group">
         <label for="post_tags">Password</label>
-        <input type="password" value="<?php echo $user_password; ?>" class="form-control" name="user_password">
+        <input autocomplete="off" type="password"  class="form-control" name="user_password">
     </div>
 
 
      <div class="form-group">
-        <input class="btn btn-primary" type="submit" name="upate_profile" value="Update Profile">
+        <input class="btn btn-primary" type="submit" name="" value="Update Profile">
     </div>
 
      </form>

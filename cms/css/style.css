@@ -1,0 +1,4 @@
+.pager li .active-link {
+    background: lightskyblue !important;
+    color: darkblue;
+}
