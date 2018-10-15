@@ -1,3 +1,21 @@
+<?php include "includes/admin_header.php"; ?>
+<?php ob_start() ?>
+
+<div id="wrapper">
+
+<!-- Navigation -->
+<?php include "includes/admin_navigation.php"; ?>
+
+<!-- Page Heading -->
+<div id="page-wrapper">
+<div class="container-fluid">
+    <div class="row">
+    <div class="col-lg-12">
+
+    <h1 class="page-header">
+        Control Panel
+        <small>Don't be stupid</small>
+    </h1>
 
 <table class="table table-bordered table-hover">
     <thead>
@@ -19,7 +37,7 @@
 
 <?php 
     //PULL POST FROM DATABASE
-    $query = "SELECT * FROM comments";
+    $query = "SELECT * FROM comments WHERE comment_post_id =" . mysqli_real_escape_string($connection, $_GET['id']);
     $select_comment = mysqli_query($connection,$query);
 
     while($row = mysqli_fetch_assoc($select_comment)) {
@@ -51,9 +69,9 @@
         }
 
         echo "<td>{$comment_date}</td>";
-        echo "<td><a href='comments.php?approve=$comment_id'>Approve</a></td>";
-        echo "<td><a href='comments.php?unapprove=$comment_id'>Unapprove</a></td>";
-        echo "<td><a href='comments.php?delete=$comment_id'>Delete</a></td>";
+        echo "<td><a href='post_comments.php?approve=$comment_id&id=" .$_GET['id']."'>Approve</a></td>";
+        echo "<td><a href='post_comments.php?unapprove=$comment_id&id=" .$_GET['id']."'>Unapprove</a></td>";
+        echo "<td><a href='post_comments.php?delete=$comment_id&id=" .$_GET['id']."'>Delete</a></td>";
     echo "</tr>";
 
     }  
@@ -66,11 +84,11 @@
 
 if(isset($_GET['approve'])) {
 
-    $the_comment_id = $_GET['approve'];
+    $the_comment_id = escape($_GET['approve']);
 
     $query = "UPDATE comments SET comment_status = 'approved' WHERE comment_id = $the_comment_id ";
     $unapprove_comment_query = mysqli_query($connection, $query);
-    header("Location: comments.php");
+    header("Location: post_comments.php?id=" . $_GET['id'] ."");
 
 
     }
@@ -80,11 +98,11 @@ if(isset($_GET['approve'])) {
 
 if(isset($_GET['unapprove'])) {
 
-    $the_comment_id = $_GET['unapprove'];
+    $the_comment_id = escape($_GET['unapprove']);
 
     $query = "UPDATE comments SET comment_status = 'unapproved' WHERE comment_id = $the_comment_id";
     $unapprove_comment_query = mysqli_query($connection, $query);
-    header("Location: comments.php");
+    header("Location: post_comments.php?id=" . $_GET['id'] ."" );
 
 
     }
@@ -93,13 +111,28 @@ if(isset($_GET['unapprove'])) {
 
 if(isset($_GET['delete'])) {
 
-    $the_comment_id = $_GET['delete'];
+    $the_comment_id = escape($_GET['delete']);
 
     $query = "DELETE FROM comments WHERE comment_id = {$the_comment_id} ";
     $delete_query = mysqli_query($connection, $query);
-    header("Location: comments.php");
+    header("Location: post_comments.php?id=" . $_GET['id'] ."");
 
 
     }
 
 ?>
+
+
+
+    </div>
+    </div>
+    <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</div>
+
+
+
+        <!-- /#page-wrapper -->
+
+    <?php include "includes/admin_footer.php"; ?>
