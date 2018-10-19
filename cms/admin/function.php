@@ -48,7 +48,7 @@ function checkIfUserIsLoggedInAndRedirect($redirectLocation=null){
 
 
 
-
+//Protect Mysqli protection
 function escape($string) {
 
 global $connection;

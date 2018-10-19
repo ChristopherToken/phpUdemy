@@ -222,4 +222,3 @@ $subscriber_count = mysqli_num_rows($select_all_subscribers);
 
         <!-- /#page-wrapper -->
 
-    <?php include "includes/admin_footer.php"; ?>

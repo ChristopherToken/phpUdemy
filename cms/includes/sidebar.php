@@ -15,8 +15,47 @@
     </form>
     </div>
 
-    <!-- Login -->
-    <div class="well">
+
+<!--search form-->
+    <!-- /.input-group -->
+
+
+<!-- Blog Categories Well -->
+<div class="well">
+
+    <?php //BRING CATEGORIES FROM DATABASE TO HEADER WITH LIMIT ONLY 3 CAT   LIMIT 3
+
+            $query =  "SELECT * FROM categories";
+            $select_categories_sidebar = mysqli_query($connection, $query);
+
+    ?>
+
+    <h4>Popular Subject</h4>
+    <div class="row ">
+        <div class="col-lg-12 p-3 mb-2 bg-white text-dark">
+            <ul class="list-unstyled">
+
+            <?php //While loop Show Cat in sidebar
+            
+                while($row = mysqli_fetch_assoc( $select_categories_sidebar)) {
+                    $cat_title =  $row['cat_title'];
+                    $cat_id =  $row['cat_id'];
+                    echo "<li><a href='category.php?category= $cat_id'>{$cat_title}</a></li>";
+                }
+
+            ?>
+
+            </ul>
+        </div>
+
+
+        <!-- /.col-lg-6 -->
+    </div>
+    <!-- /.row -->
+</div>
+
+ <!-- Login -->
+ <div class="well">
     <h4>Login</h4>
     <form action="includes/login.php" method="post">
     <div class="form-group">
@@ -37,42 +76,4 @@
 
     </div>
 </form>
-</div>
-
-<!--search form-->
-    <!-- /.input-group -->
-
-
-<!-- Blog Categories Well -->
-<div class="well">
-
-    <?php //BRING CATEGORIES FROM DATABASE TO HEADER WITH LIMIT ONLY 3 CAT   LIMIT 3
-
-            $query =  "SELECT * FROM categories";
-            $select_categories_sidebar = mysqli_query($connection, $query);
-
-    ?>
-
-    <h4>Blog Categories</h4>
-    <div class="row">
-        <div class="col-lg-12">
-            <ul class="list-unstyled">
-
-            <?php //While loop Show Cat in sidebar
-            
-                while($row = mysqli_fetch_assoc( $select_categories_sidebar)) {
-                    $cat_title =  $row['cat_title'];
-                    $cat_id =  $row['cat_id'];
-                    echo "<li><a href='category.php?category= $cat_id'>{$cat_title}</a></li>";
-                }
-
-            ?>
-
-            </ul>
-        </div>
-
-
-        <!-- /.col-lg-6 -->
-    </div>
-    <!-- /.row -->
 </div>
